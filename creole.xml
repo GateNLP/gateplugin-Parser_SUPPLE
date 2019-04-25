@@ -1,4 +1,6 @@
-<CREOLE-DIRECTORY>
+<CREOLE-DIRECTORY NAME="Parser: SUPPLE" VERSION="8.6-SNAPSHOT" DESCRIPTION="SUPPLE prolog chart parser">
+
+  <REQUIRES GROUP="uk.ac.gate.plugins" ARTIFACT="tools" VERSION="8.5"/>
 
   <CREOLE>
 
