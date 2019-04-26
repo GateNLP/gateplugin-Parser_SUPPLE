@@ -143,8 +143,8 @@ public class TestSuite
          try
          {
             FeatureMap fm=Factory.newFeatureMap();
-            fm.put(SUPPLE.CONFIG_FILE_PAR,(new File(configURL)).toURI().toURL());
-            fm.put(SUPPLE.FEATURE_FILE_PAR,(new File(tableURL)).toURI().toURL());
+            fm.put("configFile",(new File(configURL)).toURI().toURL());
+            fm.put("featureFile",(new File(tableURL)).toURI().toURL());
             fm.put("SUPPLEFile",new File(parserFile).toURI().toURL());
             fm.put("prologImplementation",implementation);
 

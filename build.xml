@@ -61,6 +61,8 @@ Ian Roberts (i.roberts@dcs.shef.ac.uk), March 2006
   <property name="config.dir" location="config"/>
   <property name="classes.dir" location="classes"/>
   <property name="src.dir" location="src"/>
+  <property name="test.classes.dir" location="test/classes"/>
+  <property name="test.src.dir" location="test/src"/>
   <property name="prologimpls.dir" location="prolog-impls" />
   <property name="doc.dir" location="doc" />
   <property name="javadoc.dir" location="${doc.dir}/javadoc" />
@@ -93,6 +95,13 @@ Ian Roberts (i.roberts@dcs.shef.ac.uk), March 2006
     <path refid="gate.classpath" classpath="compile" />
     <path refid="gate.runtime.classpath" classpath="runtime" />
   </maven:resolve>
+  
+  <maven:resolve>
+    <maven:dependencies>
+      <maven:dependency groupid="uk.ac.gate" artifactid="gate-core" version="8.5" />
+    </maven:dependencies>
+    <path refid="test.runtime.classpath" classpath="runtime" />
+  </maven:resolve>
 
   <!-- Local libraries (lib directory) -->
   <fileset id="local.libs" dir="${lib.dir}">
@@ -115,9 +124,8 @@ Ian Roberts (i.roberts@dcs.shef.ac.uk), March 2006
   <!-- Classpath for running tests.  You will need to add the appropriate
        prolog implementation JAR file for the given test. -->
   <path id="test.classpath" >
-    <path refid="gate.runtime.classpath" />
-    <fileset refid="local.libs" />
-    <pathelement location="${supple.jar}" />
+    <path refid="test.runtime.classpath" />
+    <pathelement location="${test.classes.dir}" />
   </path>
 
   <!-- The prolog files used in dependency checking.  This is all the .pl files
@@ -140,6 +148,7 @@ Ian Roberts (i.roberts@dcs.shef.ac.uk), March 2006
   <!-- remove compiled classes and the various prolog saved states -->
   <target name="clean">
     <delete dir="${classes.dir}" />
+    <delete dir="${test.classes.dir}" />
     <delete file="supple.swi"/>
     <delete file="supple.plcafe"/>
     <delete file="supple.sicstus"/>
@@ -158,6 +167,7 @@ Ian Roberts (i.roberts@dcs.shef.ac.uk), March 2006
   <!-- create the necessary directories -->
   <target name="supple.prepare">
     <mkdir dir="${classes.dir}" />
+    <mkdir dir="${test.classes.dir}" />
   </target>
   
   <!-- Compile the core SUPPLE classes (including the various prolog wrappers
@@ -166,6 +176,9 @@ Ian Roberts (i.roberts@dcs.shef.ac.uk), March 2006
     <javac destdir="${classes.dir}" classpathref="compile.classpath"
            debug="true" debuglevel="lines,source"
            srcdir="${src.dir}" source="1.8" target="1.8"/>
+    <javac destdir="${test.classes.dir}" classpathref="compile.classpath"
+           debug="true" debuglevel="lines,source"
+           srcdir="${test.src.dir}" source="1.8" target="1.8"/>
   </target>
 
   <!-- Build JavaDoc documentation -->
@@ -402,10 +415,8 @@ Ian Roberts (i.roberts@dcs.shef.ac.uk), March 2006
     <java classname="shef.nlp.supple.TestSuite" fork="true">
       <classpath>
         <path refid="test.classpath" />
-        <pathelement location="${sicstus-impl.jar}" />
       </classpath>
       <jvmarg value="-Xmx512m"/>
-      <sysproperty key="gate.home" value="${gate.home}"/> 
       <!-- use the executable specified above -->
       <sysproperty key="supple.sicstus.executable" value="${sicstus.executable}"/> 
       <arg value="${basedir}"/>
@@ -421,7 +432,6 @@ Ian Roberts (i.roberts@dcs.shef.ac.uk), March 2006
     <java classname="shef.nlp.supple.TestSuite" fork="true">
       <classpath>
         <path refid="test.classpath" />
-        <pathelement location="${plcafe-impl.jar}"/>
       </classpath>
       <jvmarg value="-Xmx512m"/>
       <arg value="${basedir}"/>
@@ -437,10 +447,8 @@ Ian Roberts (i.roberts@dcs.shef.ac.uk), March 2006
     <java classname="shef.nlp.supple.TestSuite" fork="true">
       <classpath>
         <path refid="test.classpath" />
-        <pathelement location="${swi-impl.jar}"/>
       </classpath>
       <jvmarg value="-Xmx512m"/>
-      <sysproperty key="gate.home" value="${gate.home}"/> 
       <!-- use the executable specified above -->
       <sysproperty key="supple.swi.executable" value="${swi.executable}"/> 
       <arg value="${basedir}"/>
@@ -455,10 +463,8 @@ Ian Roberts (i.roberts@dcs.shef.ac.uk), March 2006
     <java classname="shef.nlp.supple.TestSuite" fork="true">
       <classpath>
         <path refid="test.classpath" />
-        <pathelement location="${swi-impl.jar}"/>
       </classpath>
       <jvmarg value="-Xmx512m"/>
-      <sysproperty key="gate.home" value="${gate.home}"/> 
       <arg value="${basedir}"/>
       <arg value="${config.dir}/mapping.config"/>
       <arg value="${config.dir}/feature_table.config"/>
