@@ -138,7 +138,9 @@ Ian Roberts (i.roberts@dcs.shef.ac.uk), March 2006
 
   <!-- Buid a distribution Zip file -->
   <target name="dist" depends="clean,test.plcafe">
-    <zip destfile="${distro.location}" basedir="${basedir}" excludes="classes/**, docs/**, *.zip"/>
+    <zip destfile="${distro.location}">
+      <zipfileset dir="${basedir}" prefix="gateplugin-Parser_SUPPLE-${plugin.version}" excludes="**/classes/**, docs/**, *.zip, **/gen-src/**"/>
+    </zip>
   </target>
 
 
