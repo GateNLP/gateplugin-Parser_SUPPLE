@@ -16,6 +16,7 @@ aether-ant-tasks-uber.jar
 supple.plcafe
 supple.sicstus
 supple.swi
+compiled_grammar.pl
 classes/
 TEST-*
 TESTS-*
