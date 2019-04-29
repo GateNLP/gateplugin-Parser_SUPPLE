@@ -17,7 +17,7 @@ pipeline {
             post {
                 always {
                     warnings canRunOnFailed: true, consoleParsers: [[parserName: 'Java Compiler (javac)']], defaultEncoding: 'UTF-8', excludePattern: "**/test/**", failedNewAll: '0', unstableNewAll: '0', useStableBuildAsReference: true
-                   junit 'TEST-*.xml'
+                   //junit 'TEST-*.xml'
                 }
             }
        }
