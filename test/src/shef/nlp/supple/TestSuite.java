@@ -101,23 +101,20 @@ public class TestSuite
             rie.printStackTrace();
          }
 
-         if (gate.Main.version.startsWith("3"))
-         {
-            /* Morphology */
-            System.out.print("Loading Morphological Analyzer...");
-            try
-            {
-               ProcessingResource morphology = (ProcessingResource) Factory.createResource("gate.creole.morph.Morph",
-               Factory.newFeatureMap());
-               controller.add(morphology);
-               System.out.println(" Done");
-            }
-            catch(ResourceInstantiationException rie)
-            {
-               System.out.println(" FAILED");
-               rie.printStackTrace();
-            }
-         }
+          /* Morphology */
+          System.out.print("Loading Morphological Analyzer...");
+          try
+          {
+             ProcessingResource morphology = (ProcessingResource) Factory.createResource("gate.creole.morph.Morph",
+             Factory.newFeatureMap());
+             controller.add(morphology);
+             System.out.println(" Done");
+          }
+          catch(ResourceInstantiationException rie)
+          {
+             System.out.println(" FAILED");
+             rie.printStackTrace();
+          }
 
 
          /* Name Entity Recogniser */
