@@ -13,15 +13,8 @@ Department of Computer Science\\University of Sheffield}
 \maketitle
 
 
-{\huge A royalty-free license is granted for the use of this software for
-NON\_COMMERCIAL PURPOSES ONLY.\\
-
-The program is provided ``as is'' without warranty of any kind, either
-expressed or implied, including, but not limited to, the implied
-warranties of merchantability and fitness for a particular purpose.
-The entire risk as to the quality and performance of the program is
-with you.  Should the program prove defective, you assume the cost of
-all necessary servicing, repair or correction.}
+This software is released under the GNU Lesser General Public Licence version
+3.0 -- see the {\tt LICENSE} file in the distribution for details.
 
 \chapter{Introduction}
 
@@ -59,13 +52,13 @@ software:
 \begin{itemize}
 
 \item SUPPLE parser and Gate wrapper\\
-Available from \url{http://nlp.shef.ac.uk/research/supple/}
+Available from \url{https://github.com/GateNLP/gateplugin-Parser_SUPPLE}
 
 \item The GATE Framework\\
-Available from \url{http://gate.ac.uk}
+Available from \url{https://gate.ac.uk}
  
-\item Java (v1.4 or above)
-Available from \url{http://www.javasoft.com}
+\item Java (v1.8 or above)
+Available from \url{https://adoptopenjdk.net}
 
 \item Ant (to construct the parser)\\
 Available from \url{http://ant.apache.org}
@@ -76,7 +69,7 @@ Available from \url{http://ant.apache.org}
 For details see \url{http://www.sics.se/sicstus/}
 
 \item PrologCafe (v0.9 or above)\\
-Available from \url{http://kaminari.scitec.kobe-u.ac.jp/PrologCafe/}
+Included with the plugin.
 
 \item SWI Prolog (v5.4.2 or above)\\
 Available from \url{http://www.swi-prolog.org/}
@@ -110,6 +103,8 @@ implementations.
 
 \item src: the java source files.
 
+\item prolog-impls: files specific to the various Prolog implementations.
+
 \item creole.xml the configuration of the Gate SUPPLE Wrapper
 
 \end{itemize}
@@ -138,7 +133,7 @@ testing code provided in the source. In order to parse a document you will
 need to construct an application that has:
 
 \begin{itemize}
-\item document reset (usefull)
+\item document reset (useful)
 
 \item tokeniser (mandatory)
 
