@@ -86,6 +86,7 @@ Ian Roberts (i.roberts@dcs.shef.ac.uk), March 2006
   <path id="aether-ant-tasks.classpath" path="aether-ant-tasks-uber.jar" />
   <typedef resource="org/eclipse/aether/ant/antlib.xml" uri="antlib:org.eclipse.aether.ant" classpathref="aether-ant-tasks.classpath" />
 
+  <maven:mirror id="central-https" url="https://repo1.maven.org/maven2" mirrorOf="central" />
   <!-- build the gate-core classpath via maven -->
   <maven:resolve>
     <maven:dependencies>
